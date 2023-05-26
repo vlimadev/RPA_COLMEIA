@@ -5,6 +5,7 @@ const TelaMarketing = require("./TelaMatketing");
 const RespostaPorTarget = require("./RespostaPorTarget");
 const TemplatePorTarget = require("./TemplatePorTarget");
 const DisparoPorStatus = require("./DisparoPorStatus");
+const ObservarPastaUploads = require("./ObservarPastaUploads");
 
 (async () => {
   try {
@@ -34,6 +35,7 @@ const DisparoPorStatus = require("./DisparoPorStatus");
                               console.log(
                                 "Etapa: Disparo por status concluida com sucesso"
                               );
+
                               process.exit();
                             } else {
                               console.log(
