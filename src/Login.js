@@ -8,10 +8,11 @@ async function Login() {
     const browser = await puppeteer.launch({
       headless: true,
       args: [
-        "--start-maximized", // you can also use '--start-fullscreen'
+	"--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
       ],
-      defaultViewport: null,
-      browserContext: "default",
     });
 
     const page = await browser.newPage();
