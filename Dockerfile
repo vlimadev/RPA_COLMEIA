@@ -26,17 +26,28 @@ RUN apt-get install -y libpango1.0-0 libxcomposite1 libxcursor1 libxdamage1 libx
     libxi6 libxrandr2 libgtk-3-0 libatk1.0-0 libatk-bridge2.0-0 libxss1 libnss3 libasound2 \
     fonts-liberation xdg-utils cron
 
-WORKDIR /rpa
+COPY ./rpa-colmeia /etc/init.d/
+RUN chmod +x /etc/init.d/rpa-colmeia
+RUN update-rc.d rpa-colmeia defaults
 
-COPY ./package.json /rpa
-COPY ./src /rpa/src
+WORKDIR /app
 
-RUN npm install
+# RPA
+RUN mkdir -p ./rpa/src
+COPY ./package.json ./rpa
+COPY ./package-lock.json ./rpa
+COPY ./src ./rpa/src
+RUN cd rpa; npm ci
 
-RUN echo "*/5 * * * * cd /rpa && node src/index.js" >> /etc/crontab
+# MS
+RUN mkdir ./service
+COPY ./back-RPA ./service
+RUN cd service; npm ci
+RUN /etc/init.d/rpa-colmeia start &
+
+# SCRIPT
+COPY ./script.sh ./
 
 EXPOSE $PORT
-
-# CMD cron && tail -f /dev/null
-CMD ["node", "src/index.js"]
+CMD sh ./script.sh
 
