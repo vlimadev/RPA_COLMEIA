@@ -14,6 +14,7 @@ async function Login() {
 			: ['--start-maximized'];
 
 	const launchOptions = {
+		headless: 'new',
 		args: args,
 		defaultViewport: {
 			width: 1366,
