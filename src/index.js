@@ -42,7 +42,7 @@ const ObservarPastaUploads = require('./ObservarPastaUploads');
 																'Não foi possivel acessar Disparo por status:',
 																respDisparoPorStatus,
 															);
-															process.exit();
+															process.exit(1);
 														}
 													},
 												);
@@ -51,7 +51,7 @@ const ObservarPastaUploads = require('./ObservarPastaUploads');
 													'Não foi possivel acessar Template por target:',
 													respRespostaPorTarget.data,
 												);
-												process.exit();
+												process.exit(1);
 											}
 										},
 									);
@@ -60,7 +60,7 @@ const ObservarPastaUploads = require('./ObservarPastaUploads');
 										'Não foi possivel acessar Resposta por Target:',
 										respRespostaPorTarget.data,
 									);
-									process.exit();
+									process.exit(1);
 								}
 							},
 						);
@@ -69,16 +69,16 @@ const ObservarPastaUploads = require('./ObservarPastaUploads');
 							'Não foi possivel acessar a tela de marketing:',
 							respTelaMarketing.data,
 						);
-						process.exit();
+						process.exit(1);
 					}
 				});
 			} else {
 				console.log('Não foi possivel efetuar o login:', resp.data);
-				process.exit();
+				process.exit(1);
 			}
 		});
 	} catch (error) {
 		console.log('não foi possivel executar o fluxo:', error);
-		process.exit();
+		process.exit(1);
 	}
 })();
