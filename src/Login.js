@@ -29,6 +29,10 @@ async function Login() {
 		});
 	}
 
+	if (process.env.NODE_ENV === 'production') {
+		Object.assign(launchOptions, { ignoreHTTPSErrors: true });
+	}
+
 	try {
 		//Inicia o navegador e direciona para a comeia
 		const browser = await puppeteer.launch(launchOptions);
