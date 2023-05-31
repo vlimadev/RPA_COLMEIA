@@ -10,11 +10,11 @@ else
   exit $exit_code
 fi
 
-diretorio="./rpa/uploads"
+downloadsFolder="./rpa/uploads"
 
-for arquivo in "$diretorio"/*; do
-  if [ -f "$arquivo" ]; then
-    curl -X POST -d "@$arquivo" http://exemplo.com/endpoint
+for spreadsheet in "$downloadsFolder"/*; do
+  if [ -f "$spreadsheet" ]; then
+    curl -X POST -F "file=@$spreadsheet" http://localhost:4000/postFile
   fi
 done
 
