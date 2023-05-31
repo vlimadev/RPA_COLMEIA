@@ -1,6 +1,6 @@
 FROM debian:buster
 
-    ARG COLMEIA_SENHA
+ARG COLMEIA_SENHA
 ARG COLMEIA_SENHA
 
 ENV NODE_ENV='production' \
@@ -45,8 +45,6 @@ RUN cd service && npm ci
 # SCRIPT
 COPY script.sh .
 
-RUN npm install -g pm2
-
-RUN npm install oracledb
+RUN npm install -g pm2 oracledb
 
 CMD pm2 start ./service/index.js & sh ./script.sh
