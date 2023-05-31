@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.example
+uploads
+Dockerfile
+.git
+.gitignore
+
+back-RPA/node_modules
+back-RPA/.env
+back-RPA/.env.example
+back-RPA/.git
+back-RPA/.gitignore
